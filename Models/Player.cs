@@ -5,8 +5,9 @@ namespace Mvc.Models{
     public class Player 
     {
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id {get; set; }
-        public int id { get; set; }
+        public string Id { get; set; }
+
+        public int playerid { get; set; }
         public string photo { get; set; }
         public string web_name { get; set; }
         public int team_code { get; set; }
@@ -17,8 +18,8 @@ namespace Mvc.Models{
         public int squad_number { get; set; }
         public string news { get; set; }
         public int now_cost { get; set; }
-        public int chance_of_playing_this_round { get; set; }
-        public int chance_of_playing_next_round { get; set; }
+        public int? chance_of_playing_this_round { get; set; }
+        public int? chance_of_playing_next_round { get; set; }
         public string value_form { get; set; }
         public string value_season { get; set; }
         public int cost_change_start { get; set; }
