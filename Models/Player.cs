@@ -15,7 +15,7 @@ namespace Mvc.Models{
         public int code { get; set; }
         public string first_name { get; set; }
         public string second_name { get; set; }
-        public int squad_number { get; set; }
+        public int? squad_number { get; set; }
         public string news { get; set; }
         public int now_cost { get; set; }
         public int? chance_of_playing_this_round { get; set; }
