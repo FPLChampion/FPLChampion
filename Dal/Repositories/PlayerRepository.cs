@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using Mvc.Models;
 using Mvc.Dal.Interfaces;
+using System;
 
 namespace Mvc.Dal.Repositories
 {
@@ -31,21 +32,16 @@ namespace Mvc.Dal.Repositories
 
         public List <Player> GetPlayersWithCostChangeStart() {
             var players = GetPlayers();
-            
-            players.FindAll(player => player.cost_change_start != 0).Sort((a, b) => 
-                a.cost_change_start < b.cost_change_start 
-                    ? -1
-                    : a.cost_change_start > b.cost_change_start ? 1 : 0);
+            Comparison<Player> comparator = (x, y) => x.cost_change_start.CompareTo(y.cost_change_start);
+            players.FindAll(player => player.cost_change_start != 0).Sort(comparator);
 
             return players;
        }
 
         public List <Player> GetPlayersWithCostChangeEvent() {
             var players = GetPlayers();
-            players.FindAll(player => player.cost_change_event != 0).Sort((a, b) => 
-                a.cost_change_event < b.cost_change_event 
-                    ? -1
-                    : a.cost_change_event > b.cost_change_event ? 1 : 0);
+            Comparison<Player> comparator = (x, y) => x.cost_change_event.CompareTo(y.cost_change_event);
+            players.FindAll(player => player.cost_change_event != 0).Sort(comparator);
 
             return players;
        }
