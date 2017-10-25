@@ -9,5 +9,7 @@ namespace Mvc.Dal.Interfaces
     {
         List<Player> GetPlayers();
         Player GetPlayer(int id);
+        List <Player> GetPlayersWithCostChangeStart();
+        List <Player> GetPlayersWithCostChangeEvent();
     }
 }

@@ -28,5 +28,15 @@ namespace Mvc.Dal.Repositories
 
             return players;
         }
+
+        public List <Player> GetPlayersWithCostChangeStart() {
+            var players = GetPlayers();
+            return players.FindAll(player => player.cost_change_start != 0);
+       }
+
+        public List <Player> GetPlayersWithCostChangeEvent() {
+            var players = GetPlayers();
+            return players.FindAll(player => player.cost_change_event != 0);
+       }
     }
 }
