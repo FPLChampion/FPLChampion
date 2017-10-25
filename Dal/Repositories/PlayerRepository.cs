@@ -31,12 +31,23 @@ namespace Mvc.Dal.Repositories
 
         public List <Player> GetPlayersWithCostChangeStart() {
             var players = GetPlayers();
-            return players.FindAll(player => player.cost_change_start != 0);
+            
+            players.FindAll(player => player.cost_change_start != 0).Sort((a, b) => 
+                a.cost_change_start < b.cost_change_start 
+                    ? -1
+                    : a.cost_change_start > b.cost_change_start ? 1 : 0);
+
+            return players;
        }
 
         public List <Player> GetPlayersWithCostChangeEvent() {
             var players = GetPlayers();
-            return players.FindAll(player => player.cost_change_event != 0);
+            players.FindAll(player => player.cost_change_event != 0).Sort((a, b) => 
+                a.cost_change_event < b.cost_change_event 
+                    ? -1
+                    : a.cost_change_event > b.cost_change_event ? 1 : 0);
+
+            return players;
        }
     }
 }
