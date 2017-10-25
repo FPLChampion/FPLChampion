@@ -27,7 +27,7 @@ namespace Mvc.Controllers
 
         [HttpGet]
         [Route("{id}")] 
-        public Player GetPlayer(string id) {
+        public Player GetPlayer(int id) {
             var player = _repo.GetPlayer(id);
 
             return player;

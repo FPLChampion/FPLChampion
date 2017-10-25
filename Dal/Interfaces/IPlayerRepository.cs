@@ -8,6 +8,6 @@ namespace Mvc.Dal.Interfaces
     public interface IPlayerRepository
     {
         List<Player> GetPlayers();
-        Player GetPlayer(string id);
+        Player GetPlayer(int id);
     }
 }

@@ -15,7 +15,7 @@ namespace Mvc.Dal.Repositories
             _context = new FplContext(settings);
         }
 
-        public Player GetPlayer(string id)
+        public Player GetPlayer(int id)
         {
             var player = _context.Player(id);
 

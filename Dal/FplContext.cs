@@ -23,8 +23,8 @@ namespace Mvc.Dal{
             }
         }
 
-        public Player Player(string id) {
-                return _database.GetCollection<Player>("Players").Find(x => x.playerId.Equals(id)).FirstOrDefault();
+        public Player Player(int id) {
+                return _database.GetCollection<Player>("Players").Find(x => x.id.Equals(id)).FirstOrDefault();
         }
     }
 }
