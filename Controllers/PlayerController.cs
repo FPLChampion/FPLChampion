@@ -14,9 +14,9 @@ namespace Mvc.Controllers
     {
         private readonly IPlayerRepository _repo;
 
-        public PlayerController(IPlayerRepository noteRepository)
+        public PlayerController(IPlayerRepository playerRepository)
         {
-            _repo = noteRepository;
+            _repo = playerRepository;
         }
 
         [HttpGet]
