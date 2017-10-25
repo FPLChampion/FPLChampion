@@ -24,5 +24,13 @@ namespace Mvc.Controllers
             var players = _repo.GetPlayers();
             return  players;//players; //;
         } 
+
+        [HttpGet]
+        [Route("{id}")] 
+        public Player GetPlayer(string id) {
+            var player = _repo.GetPlayer(id);
+
+            return player;
+        }
     }
 }

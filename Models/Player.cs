@@ -6,9 +6,10 @@ namespace Mvc.Models{
     {
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id {get;set;}
-        public string Name {get;set;}
+        public string playerId {get;set;}
+        public string name {get;set;}
         
-        public string Team {get;set;}
+        public string team {get;set;}
         
     }
 }
