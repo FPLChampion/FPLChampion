@@ -67,6 +67,7 @@
 </div>
 
 <div class="row">
+    <h3>Players with cost change:</h3>
     <ul>
         @foreach(var player in Model.Players){
             <li>Name: @player.first_name @player.second_name</li> 
@@ -76,5 +77,11 @@
             }
         }
     </ul>
-    
+
+    <h3>Teams:</h3>
+    <ul>
+        @foreach(var team in Model.Teams){
+            <li>Name: @team.name</li>
+        }
+    </ul>
 </div>
