@@ -26,5 +26,17 @@ namespace Mvc.Dal{
         public Player Player(int id) {
                 return _database.GetCollection<Player>("Players").Find(x => x.playerid.Equals(id)).FirstOrDefault();
         }
+
+        public List<Team> Teams 
+        {
+            get 
+            {
+                return _database.GetCollection<Team>("Teams").Find(_=>true).ToList();
+            }
+        }
+
+        public Team Team(int id) {
+            return _database.GetCollection<Team>("Teams").Find(x => x.teamid.Equals(id)).FirstOrDefault();
+        }
     }
 }
