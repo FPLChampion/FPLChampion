@@ -22,6 +22,7 @@ namespace Mvc.Controllers
         [HttpGet]
         public List<Player> Get()  {
             var players = _repo.GetPlayers();
+            
             return  players;//players; //;
         } 
 

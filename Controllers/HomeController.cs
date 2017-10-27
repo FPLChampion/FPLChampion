@@ -12,16 +12,19 @@ namespace Mvc.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IPlayerRepository _repo;
+        private readonly IPlayerRepository _playerRepo;
+        private readonly ITeamRepository _teamRepo;
 
-        public HomeController(IPlayerRepository playerRepository)
+        public HomeController(IPlayerRepository playerRepository, ITeamRepository teamRepository)
         {
-            _repo = playerRepository;
+            _playerRepo = playerRepository;
+            _teamRepo = teamRepository;
         }
         public IActionResult Index()
         {
             var model = new HomeViewModel();
-            model.Players = _repo.GetPlayersWithCostChangeEvent();
+            model.Players = _playerRepo.GetPlayersWithCostChangeEvent();
+            model.Teams = _teamRepo.GetTeams();
 
             return View(model);
         }
