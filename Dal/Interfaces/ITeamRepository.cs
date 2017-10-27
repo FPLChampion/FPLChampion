@@ -7,6 +7,7 @@ namespace Mvc.Dal.Interfaces
 {
     public interface ITeamRepository {
         List<Team> GetTeams();
-        Team GetTeam(int id); 
+        Team GetTeam(int id);
+        List<Player> GetTeamPlayers(int id);
     }
 }
