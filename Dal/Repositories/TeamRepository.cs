@@ -9,30 +9,32 @@ namespace Mvc.Dal.Repositories
 {
     public class TeamRepository : ITeamRepository
     {
-        private readonly FplContext _context = null;
+        private readonly TeamContext _teamContext = null;
+        private readonly PlayerContext _playerContext = null;
 
         public TeamRepository(IOptions<Settings> settings)
         {
-            _context = new FplContext(settings);
+            _teamContext = new TeamContext(settings);
+            _playerContext = new PlayerContext(settings);
         }
 
         public Team GetTeam(int id)
         {
-            var team = _context.Team(id);
+            var team = _teamContext.Team(id);
 
             return team;
         }
 
         public List<Team> GetTeams()
         {
-            var teams = _context.Teams;
+            var teams = _teamContext.Teams;
 
             return teams;
         }
 
         public List<Player> GetTeamPlayers(int id) {
             var team = GetTeam(id);
-            var players = _context.Players.FindAll(player => player.team_code.Equals(team.code));
+            var players = _playerContext.Players.FindAll(player => player.team_code.Equals(team.code));
 
             return players;
         }
