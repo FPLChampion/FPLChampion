@@ -66,22 +66,24 @@
     </a>
 </div>
 
-<div class="row">
-    <h3>Players with cost change:</h3>
-    <ul>
-        @foreach(var player in Model.Players){
-            <li>Name: @player.first_name @player.second_name</li> 
-            @if(player.cost_change_event != null)
-            {
-                <li>Pricechange: @player.cost_change_event</li>
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Pricechange</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var player in Model.Players){
+                @if(player.cost_change_event != null)
+                {
+                    <tr class="">
+                        <td>@player.first_name @player.second_name</td>
+                        <td>@player.cost_change_event</td>
+                    </tr>
+                }
             }
-        }
-    </ul>
-
-    <h3>Teams:</h3>
-    <ul>
-        @foreach(var team in Model.Teams){
-            <li>Name: @team.name</li>
-        }
-    </ul>
+        </tbody>
+    </table>
 </div>
