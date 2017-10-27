@@ -6,5 +6,6 @@ namespace Mvc.Models.ViewModels
     {
         public List<Player> Players {get;set;}
         public List<Team> Teams {get;set;}
+        public List<Player> Arsenal {get;set;}
     }
 }

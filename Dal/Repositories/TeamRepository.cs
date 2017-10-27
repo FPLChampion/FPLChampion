@@ -29,5 +29,12 @@ namespace Mvc.Dal.Repositories
 
             return teams;
         }
+
+        public List<Player> GetTeamPlayers(int id) {
+            var team = GetTeam(id);
+            var players = _context.Players.FindAll(player => player.team_code.Equals(team.code));
+
+            return players;
+        }
     }
 }

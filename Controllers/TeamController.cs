@@ -33,5 +33,13 @@ namespace Mvc.Controllers
 
             return team;
         }
+
+        [HttpGet]
+        [Route("{id}/players")]
+        public List<Player> GetTeamPlayers(int id) {
+            var players = _repo.GetTeamPlayers(id);
+
+            return players;
+        }
     }
 }
