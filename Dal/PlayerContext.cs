@@ -18,27 +18,34 @@ namespace Mvc.Dal
             if (client != null)
                 _database = client.GetDatabase(settings.Value.Database);
         }
-
+        private IMongoCollection<Player> PlayersCollection
+        {
+            get
+            {
+                return _database.GetCollection<Player>(_playersCollectionName);
+            }
+        }
+        
         public List<Player> Players
         {
             get
             {
-                return _database.GetCollection<Player>(_playersCollectionName).Find(_=>true).ToList();
+                return PlayersCollection.Find(_=>true).ToList();
             }
         }
 
         public Player Player(int id) {
-                return _database.GetCollection<Player>(_playersCollectionName).Find(x => x.playerid.Equals(id)).FirstOrDefault();
+                return PlayersCollection.Find(x => x.playerid.Equals(id)).FirstOrDefault();
         }
 
         public bool UpdateOrCreatePlayers()
         {
             try
             {
-                var playerCollections = _database.GetCollection<Player>(_playersCollectionName);
+                var playerCollections = PlayersCollection;
                 if(playerCollections == null){
                     _database.CreateCollection(_playersCollectionName);
-                    playerCollections = _database.GetCollection<Player>(_playersCollectionName);
+                    playerCollections = PlayersCollection;
                 }
 
                 using (StreamReader r = new StreamReader("data/players.json"))
