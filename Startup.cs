@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Mvc.Dal.Repositories;
 using Mvc.Models;
 using Mvc.Dal.Interfaces;
+using Mvc.Dal;
+using Microsoft.Extensions.Options;
 
 namespace Mvc
 {

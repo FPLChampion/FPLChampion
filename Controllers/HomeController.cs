@@ -26,7 +26,7 @@ namespace Mvc.Controllers
             model.Players = _playerRepo.GetPlayersWithCostChangeEvent();
             model.Teams = _teamRepo.GetTeams();
             model.Arsenal = _teamRepo.GetTeamPlayers(1); // Arsenal = 1... yeah right
-
+            
             return View(model);
         }
 

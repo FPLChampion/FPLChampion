@@ -1,7 +1,10 @@
+using System;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Mvc.Models{
+namespace Mvc.Models
+{
+    [Serializable()]
     public class Player 
     {
         [BsonRepresentation(BsonType.ObjectId)]

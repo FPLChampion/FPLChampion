@@ -1,14 +1,17 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using Mvc.Models;
+using Newtonsoft.Json;
 
 namespace Mvc.Dal
 {
     public class TeamContext
     {
         private readonly IMongoDatabase _database = null;
-
+        private const string _teamsCollectionName = "Teams";
         public TeamContext(IOptions<Settings> settings)
         {
             var client = new MongoClient(settings.Value.ConnectionString);
@@ -16,16 +19,42 @@ namespace Mvc.Dal
                 _database = client.GetDatabase(settings.Value.Database);
         }
 
-        public List<Team> Teams 
+        public List<Team> Teams
         {
             get 
             {
-                return _database.GetCollection<Team>("Teams").Find(_=>true).ToList();
+                return _database.GetCollection<Team>(_teamsCollectionName).Find(_=>true).ToList();
             }
         }
 
         public Team Team(int id) {
-            return _database.GetCollection<Team>("Teams").Find(x => x.teamid.Equals(id)).FirstOrDefault();
+            return _database.GetCollection<Team>(_teamsCollectionName).Find(x => x.teamid.Equals(id)).FirstOrDefault();
+        }
+
+        public bool UpdateOrCreateTeams()
+        {
+            try
+            {
+                var teamsCollection = _database.GetCollection<Team>(_teamsCollectionName);
+                if(teamsCollection == null){
+                    _database.CreateCollection(_teamsCollectionName);
+                    teamsCollection = _database.GetCollection<Team>(_teamsCollectionName);
+                }
+
+                using (StreamReader r = new StreamReader("data/teams.json"))
+                {
+                    string json = r.ReadToEnd();
+
+                    List<Team> teams = JsonConvert.DeserializeObject<List<Team>>(json);
+                    teamsCollection.InsertMany(teams);
+                }
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

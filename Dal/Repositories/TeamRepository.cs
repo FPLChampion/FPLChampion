@@ -21,7 +21,6 @@ namespace Mvc.Dal.Repositories
         public Team GetTeam(int id)
         {
             var team = _teamContext.Team(id);
-
             return team;
         }
 
