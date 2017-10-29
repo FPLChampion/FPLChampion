@@ -38,7 +38,7 @@ namespace Mvc.Dal
                 return PlayerCollection.Find(x => x.playerid.Equals(id)).FirstOrDefault();
         }
 
-        public bool UpdateOrCreatePlayers()
+        public bool UpdateOrCreatePlayers(List<Player> players)
         {
             try
             {
@@ -47,14 +47,7 @@ namespace Mvc.Dal
                     _database.CreateCollection(_playersCollectionName);
                     playerCollections = PlayerCollection;
                 }
-
-                using (StreamReader r = new StreamReader("data/players.json"))
-                {
-                    string json = r.ReadToEnd();
-
-                    List<Player> players = JsonConvert.DeserializeObject<List<Player>>(json);
-                    playerCollections.InsertMany(players);
-                }
+                playerCollections.InsertMany(players);
             }
             catch(Exception)
             {

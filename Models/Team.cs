@@ -11,6 +11,7 @@ namespace Mvc.Models {
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
+        [JsonProperty("id")]
         public int teamid { get; set; }
         public List<CurrentEventFixture> current_event_fixture { get; set; }
         public List<NextEventFixture> next_event_fixture { get; set; }

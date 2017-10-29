@@ -3,6 +3,9 @@ using System.Text.Encodings.Web;
 using Mvc.Dal;
 using Microsoft.Extensions.Options;
 using Mvc.Models;
+using System.Threading.Tasks;
+using Mvc.Http;
+using System.Linq;
 
 namespace MvcMovie.Controllers
 {
@@ -11,20 +14,29 @@ namespace MvcMovie.Controllers
     {
         private readonly PlayerContext _pcontext = null;
         private readonly TeamContext _tcontext = null;
-
-        public SyncController(IOptions<Settings> settings)
+        private readonly IWebClient _webClient;
+        public SyncController(IOptions<Settings> settings, IWebClient webClient)
         {
             _pcontext = new PlayerContext(settings);
             _tcontext = new TeamContext(settings);
+            _webClient = webClient;
         }
         
         [HttpGet]
-        public string Index()
+        public async Task<string> Index()
         {
-           _pcontext.UpdateOrCreatePlayers();
-           _tcontext.UpdateOrCreateTeams();
+            var players = await _webClient.GetPlayersFromFpl();
+            var teams = await _webClient.GetTeamsFromFpl();
 
-            return "Done";
+            if(players.Any()){
+                _pcontext.UpdateOrCreatePlayers(players);
+            }
+
+            if(teams.Any()){
+                _tcontext.UpdateOrCreateTeams(teams);
+            }
+
+            return "DONE";
         }
     }
 }

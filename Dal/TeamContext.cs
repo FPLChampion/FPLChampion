@@ -31,7 +31,7 @@ namespace Mvc.Dal
             return _database.GetCollection<Team>(_teamsCollectionName).Find(x => x.teamid.Equals(id)).FirstOrDefault();
         }
 
-        public bool UpdateOrCreateTeams()
+        public bool UpdateOrCreateTeams(List<Team> teams)
         {
             try
             {
@@ -41,13 +41,7 @@ namespace Mvc.Dal
                     teamsCollection = _database.GetCollection<Team>(_teamsCollectionName);
                 }
 
-                using (StreamReader r = new StreamReader("data/teams.json"))
-                {
-                    string json = r.ReadToEnd();
-
-                    List<Team> teams = JsonConvert.DeserializeObject<List<Team>>(json);
-                    teamsCollection.InsertMany(teams);
-                }
+                teamsCollection.InsertMany(teams);
             }
             catch(Exception)
             {
