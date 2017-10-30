@@ -19,26 +19,34 @@ namespace Mvc.Dal
                 _database = client.GetDatabase(settings.Value.Database);
         }
 
+        private IMongoCollection<Team> TeamColletction
+        {
+            get
+            {
+                return _database.GetCollection<Team>(_teamsCollectionName);   
+            }
+        }
+
         public List<Team> Teams
         {
             get 
             {
-                return _database.GetCollection<Team>(_teamsCollectionName).Find(_=>true).ToList();
+                return TeamColletction.Find(_=>true).ToList();
             }
         }
 
         public Team Team(int id) {
-            return _database.GetCollection<Team>(_teamsCollectionName).Find(x => x.teamid.Equals(id)).FirstOrDefault();
+            return TeamColletction.Find(x => x.teamid.Equals(id)).FirstOrDefault();
         }
 
         public bool UpdateOrCreateTeams(List<Team> teams)
         {
             try
             {
-                var teamsCollection = _database.GetCollection<Team>(_teamsCollectionName);
+                var teamsCollection = TeamColletction;
                 if(teamsCollection == null){
                     _database.CreateCollection(_teamsCollectionName);
-                    teamsCollection = _database.GetCollection<Team>(_teamsCollectionName);
+                    teamsCollection = TeamColletction;
                 }
 
                 teamsCollection.InsertMany(teams);
