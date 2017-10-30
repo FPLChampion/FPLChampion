@@ -5,6 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Mvc.Dal.Repositories;
 using Mvc.Models;
 using Mvc.Dal.Interfaces;
+using Mvc.Dal;
+using Microsoft.Extensions.Options;
+using Mvc.Http;
 
 namespace Mvc
 {
@@ -30,6 +33,7 @@ namespace Mvc
 
             services.AddTransient<IPlayerRepository, PlayerRepository>();
             services.AddTransient<ITeamRepository, TeamRepository>();
+            services.AddTransient<IWebClient, WebClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

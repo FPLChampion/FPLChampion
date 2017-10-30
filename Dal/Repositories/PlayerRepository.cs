@@ -10,11 +10,11 @@ namespace Mvc.Dal.Repositories
 {
     public class PlayerRepository : IPlayerRepository
     {
-        private readonly FplContext _context = null;
+        private readonly PlayerContext _context = null;
 
         public PlayerRepository(IOptions<Settings> settings)
         {
-            _context = new FplContext(settings);
+            _context = new PlayerContext(settings);
         }
 
         public Player GetPlayer(int id)

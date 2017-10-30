@@ -1,12 +1,17 @@
+using System;
 using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 
 namespace Mvc.Models {
+
+    [Serializable()]
     public class Team {
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
+        [JsonProperty("id")]
         public int teamid { get; set; }
         public List<CurrentEventFixture> current_event_fixture { get; set; }
         public List<NextEventFixture> next_event_fixture { get; set; }
