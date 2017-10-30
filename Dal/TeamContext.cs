@@ -19,7 +19,7 @@ namespace Mvc.Dal
                 _database = client.GetDatabase(settings.Value.Database);
         }
 
-        private IMongoCollection<Team> TeamColletction
+        private IMongoCollection<Team> TeamCollection
         {
             get
             {
@@ -31,22 +31,22 @@ namespace Mvc.Dal
         {
             get 
             {
-                return TeamColletction.Find(_=>true).ToList();
+                return TeamCollection.Find(_=>true).ToList();
             }
         }
 
         public Team Team(int id) {
-            return TeamColletction.Find(x => x.teamid.Equals(id)).FirstOrDefault();
+            return TeamCollection.Find(x => x.teamid.Equals(id)).FirstOrDefault();
         }
 
         public bool UpdateOrCreateTeams(List<Team> teams)
         {
             try
             {
-                var teamsCollection = TeamColletction;
+                var teamsCollection = TeamCollection;
                 if(teamsCollection == null){
                     _database.CreateCollection(_teamsCollectionName);
-                    teamsCollection = TeamColletction;
+                    teamsCollection = TeamCollection;
                 }
 
                 teamsCollection.InsertMany(teams);
