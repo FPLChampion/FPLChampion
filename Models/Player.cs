@@ -11,7 +11,6 @@ namespace Mvc.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
-        [JsonProperty("id")]
         public int playerid { get; set; }
         public string photo { get; set; }
         public string web_name { get; set; }
