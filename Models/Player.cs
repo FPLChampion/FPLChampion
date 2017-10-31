@@ -8,11 +8,11 @@ namespace Mvc.Models
     [Serializable()]
     public class Player 
     {
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        [BsonId]
+        [JsonIgnore]
+        public ObjectId mongoId { get; set; }
 
-        [JsonProperty("id")]
-        public int playerid { get; set; }
+        public int id { get; set; }
         public string photo { get; set; }
         public string web_name { get; set; }
         public int team_code { get; set; }

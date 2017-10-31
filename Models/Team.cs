@@ -8,11 +8,12 @@ namespace Mvc.Models {
 
     [Serializable()]
     public class Team {
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
 
-        [JsonProperty("id")]
-        public int teamid { get; set; }
+        [BsonId]
+        [JsonIgnore]
+        public ObjectId mongoId { get; set; }
+
+        public int id { get; set; }
         public List<CurrentEventFixture> current_event_fixture { get; set; }
         public List<NextEventFixture> next_event_fixture { get; set; }
         public string name { get; set; }

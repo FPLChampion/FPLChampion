@@ -35,19 +35,17 @@ namespace Mvc.Dal
         }
 
         public Player Player(int id) {
-                return PlayerCollection.Find(x => x.playerid.Equals(id)).FirstOrDefault();
+                return PlayerCollection.Find(x => x.id.Equals(id)).FirstOrDefault();
         }
 
         public bool UpdateOrCreatePlayers(List<Player> players)
         {
             try
             {
-                var playerCollections = PlayerCollection;
-                if(playerCollections == null){
-                    _database.CreateCollection(_playersCollectionName);
-                    playerCollections = PlayerCollection;
-                }
-                playerCollections.InsertMany(players);
+                _database.DropCollection(_playersCollectionName);
+                _database.CreateCollection(_playersCollectionName);
+
+                PlayerCollection.InsertMany(players);
             }
             catch(Exception)
             {
