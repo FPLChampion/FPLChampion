@@ -10,11 +10,11 @@ namespace Mvc.Controllers.Api
 {
 
     [Route("api/[controller]")]
-    public class PlayerController : Controller
+    public class PlayersController : Controller
     {
         private readonly IPlayerRepository _repo;
 
-        public PlayerController(IPlayerRepository playerRepository)
+        public PlayersController(IPlayerRepository playerRepository)
         {
             _repo = playerRepository;
         }

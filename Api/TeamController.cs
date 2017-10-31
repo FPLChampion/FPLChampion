@@ -10,11 +10,11 @@ namespace Mvc.Controllers.Api
 {
 
     [Route("api/[controller]")]
-    public class TeamController : Controller
+    public class TeamsController : Controller
     {
         private readonly ITeamRepository _repo;
 
-        public TeamController(ITeamRepository teamRepository)
+        public TeamsController(ITeamRepository teamRepository)
         {
             _repo = teamRepository;
         }
