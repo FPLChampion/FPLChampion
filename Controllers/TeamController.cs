@@ -1,45 +1,25 @@
-using System.Collections.Generic;
-using System.Net.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
 using Mvc.Dal.Interfaces;
-using Mvc.Models;
+using Mvc.Models.ViewModels;
 
 namespace Mvc.Controllers 
 {
-
-    [Route("api/[controller]")]
     public class TeamController : Controller
     {
-        private readonly ITeamRepository _repo;
-
-        public TeamController(ITeamRepository teamRepository)
+        private readonly ITeamRepository _teamRepo;
+        public TeamController(ITeamRepository teamRepo)
         {
-            _repo = teamRepository;
+            _teamRepo = teamRepo;
         }
 
-        [HttpGet]
-        public List<Team> Get()  {
-            var teams = _repo.GetTeams();
+        public IActionResult Index()
+        {
+            var model = new TeamViewModel();
+            model.Teams = _teamRepo.GetTeams();
+            model.Arsenal = _teamRepo.GetTeamPlayers(1); // Arsenal = 1... yeah right
             
-            return  teams;
-        } 
-
-        [HttpGet]
-        [Route("{id}")] 
-        public Team GetTeam(int id) {
-            var team = _repo.GetTeam(id);
-
-            return team;
-        }
-
-        [HttpGet]
-        [Route("{id}/players")]
-        public List<Player> GetTeamPlayers(int id) {
-            var players = _repo.GetTeamPlayers(id);
-
-            return players;
+            return View(model);
         }
     }
+   
 }

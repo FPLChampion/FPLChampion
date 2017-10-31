@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Mvc.Http;
 using System.Linq;
 
-namespace MvcMovie.Controllers
+namespace MvcMovie.Controllers.Api
 {
     [Route("api/[controller]")]
     public class SyncController : Controller

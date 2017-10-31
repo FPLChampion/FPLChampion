@@ -6,7 +6,7 @@ using MongoDB.Bson;
 using Mvc.Dal.Interfaces;
 using Mvc.Models;
 
-namespace Mvc.Controllers 
+namespace Mvc.Controllers.Api
 {
 
     [Route("api/[controller]")]
