@@ -36,20 +36,17 @@ namespace Mvc.Dal
         }
 
         public Team Team(int id) {
-            return TeamCollection.Find(x => x.teamid.Equals(id)).FirstOrDefault();
+            return TeamCollection.Find(x => x.id.Equals(id)).FirstOrDefault();
         }
 
         public bool UpdateOrCreateTeams(List<Team> teams)
         {
             try
             {
-                var teamsCollection = TeamCollection;
-                if(teamsCollection == null){
-                    _database.CreateCollection(_teamsCollectionName);
-                    teamsCollection = TeamCollection;
-                }
+                _database.DropCollection(_teamsCollectionName);
+                _database.CreateCollection(_teamsCollectionName);
 
-                teamsCollection.InsertMany(teams);
+                TeamCollection.InsertMany(teams);
             }
             catch(Exception)
             {
