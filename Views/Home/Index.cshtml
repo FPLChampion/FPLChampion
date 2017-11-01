@@ -87,4 +87,42 @@
         </tbody>
     </table>
 </div>
+
+<div data-vm="Players">
+   
+   <table>
+      <thead>
+         <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+         </tr>
+      </thead>
+      <tbody data-bind="foreach: PlayerList">
+         <tr>
+            <td>
+               <div>
+                  <span data-bind="text: first_name"></span>
+               </div>
+            </td>
+            <td>
+               <div>
+                  <span data-bind="text: last_name"></span>
+               </div>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</div>
+
+<div id="Content"></div>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.js"></script>
+<script src="https://unpkg.com/create-react-class@15.6.2/create-react-class.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>       
+<script src="https://unpkg.com/dotnetify@2.0.7-beta/dist/signalR-netcore.js"></script>
+<script src="https://unpkg.com/dotnetify@2.0.7-beta/dist/dotnetify-react.min.js"></script> 
+
+<script src="reacttwo.jsx" type="text/babel"></script>
 </hr>
