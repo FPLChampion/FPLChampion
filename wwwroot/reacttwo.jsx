@@ -18,17 +18,19 @@ class Playersrr extends React.Component {
         this.state.PlayerList.forEach(function(element) {
             console.log(element)
         }, this);
-        var players = this.state.PlayerList.map((player) => {
+        var playerTable = this.state.PlayerList.map((player) => {
             return (
-                <Player
-                name={player.first_name}
-                />
+                <div className="table-responsive">
+                    <p key={player.id} name={player.first_name} >
+                        {player.first_name}
+                    </p>
+                </div>
             );
         }, this);  
        return (
-           <div id="players">
-            {players}
-           </div>
+           <div>{playerTable}</div>
+        );
+       
         // <div className="table-responsive">
         //     <table className="table table-striped table-hover">
         //         <thead>
@@ -38,11 +40,6 @@ class Playersrr extends React.Component {
         //             </tr>
         //         </thead>
         //         <tbody>
-        //         {console.log(this.state.PlayerList)}
-        //         {console.log(this.state.TEST)}
-        //         {this.state.PlayerList.map((person, index) => (
-        //             <p>Hello, {person.first_name}!</p>
-        //         ))}
         //             <tr className="">
         //                 <td>player.first_name player.second_name</td>
         //                 <td>player.cost_change_event</td>
@@ -50,7 +47,6 @@ class Playersrr extends React.Component {
         //         </tbody>
         //     </table>
         // </div>
-       );
     }
  };
  
