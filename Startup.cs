@@ -8,6 +8,9 @@ using Mvc.Dal.Interfaces;
 using Mvc.Dal;
 using Microsoft.Extensions.Options;
 using Mvc.Http;
+using DotNetify;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace Mvc
 {
@@ -24,7 +27,10 @@ namespace Mvc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
+            services.AddMemoryCache();
+            services.AddSignalR();
+            services.AddDotNetify()
+            ;
             services.Configure<Settings>(options =>
             {
                 options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
@@ -49,6 +55,12 @@ namespace Mvc
             }
 
             app.UseStaticFiles();
+            app.UseWebSockets();
+            app.UseSignalR(routes => routes.MapDotNetifyHub());
+            app.UseDotNetify(config => {
+
+                config.RegisterAssembly(GetType().Assembly/* name of the assembly where the view model classes are located */);
+            });
 
             app.UseMvc(routes =>
             {
