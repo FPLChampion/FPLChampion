@@ -21,9 +21,20 @@ class Playersrr extends React.Component {
         var playerTable = this.state.PlayerList.map((player) => {
             return (
                 <div className="table-responsive">
-                    <p key={player.id} name={player.first_name} >
-                        {player.first_name}
-                    </p>
+                    <table className="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Pricechange</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr className="" key={player.id} name={player.first_name}>
+                                <td>{player.first_name} {player.second_name}</td>
+                                <td>{player.cost_change_event}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             );
         }, this);  
@@ -31,7 +42,6 @@ class Playersrr extends React.Component {
            <div>{playerTable}</div>
         );
        
-        // <div className="table-responsive">
         //     <table className="table table-striped table-hover">
         //         <thead>
         //             <tr>
@@ -46,7 +56,6 @@ class Playersrr extends React.Component {
         //             </tr>
         //         </tbody>
         //     </table>
-        // </div>
     }
  };
  
