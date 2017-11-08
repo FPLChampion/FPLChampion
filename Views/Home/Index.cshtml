@@ -88,32 +88,3 @@
     </table>
 </div>
 </hr>
-<div class="table-responsive">
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th>Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach(var team in Model.Teams){
-                <tr><td>@team.name</td></tr>
-            }
-        </tbody>
-    </table>
-</div>
-</hr>
-<div class="table-responsive">
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th>Arsenal players:</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach(var player in Model.Arsenal){
-                <tr><td>@player.first_name @player.second_name</td></tr>
-            }
-        </tbody>
-    </table>
-</div>
